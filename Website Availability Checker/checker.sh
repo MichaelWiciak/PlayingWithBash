@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Define log file
+# Define log file and log rotation script
 LOGFILE="website_availability.log"
+ROTATE_SCRIPT="./rotate_logs.sh"
+
+# Call log rotation script
+"$ROTATE_SCRIPT"
 
 # Function to check website availability
 check_website() {
