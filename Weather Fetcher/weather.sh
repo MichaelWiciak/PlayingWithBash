@@ -34,15 +34,25 @@ if [ "$(echo "$RESPONSE" | jq -r '.cod')" != "200" ]; then
 fi
 
 # Extract data using jq
-CITY_NAME=$(echo "$RESPONSE" | jq -r '.name')
-WEATHER_DESC=$(echo "$RESPONSE" | jq -r '.weather[0].description')
-TEMP=$(echo "$RESPONSE" | jq -r '.main.temp')
-HUMIDITY=$(echo "$RESPONSE" | jq -r '.main.humidity')
-WIND_SPEED=$(echo "$RESPONSE" | jq -r '.wind.speed')
+# CITY_NAME=$(echo "$RESPONSE" | jq -r '.name')
+# WEATHER_DESC=$(echo "$RESPONSE" | jq -r '.weather[0].description')
+# TEMP=$(echo "$RESPONSE" | jq -r '.main.temp')
+# HUMIDITY=$(echo "$RESPONSE" | jq -r '.main.humidity')
+# WIND_SPEED=$(echo "$RESPONSE" | jq -r '.wind.speed')
 
 # Display the weather information
-echo "Weather in ${CITY_NAME}:"
-echo "Description: ${WEATHER_DESC}"
-echo "Temperature: ${TEMP}°C"
-echo "Humidity: ${HUMIDITY}%"
-echo "Wind Speed: ${WIND_SPEED} m/s"
+# echo "Weather in ${CITY_NAME}:"
+# echo "Description: ${WEATHER_DESC}"
+# echo "Temperature: ${TEMP}°C"
+# echo "Humidity: ${HUMIDITY}%"
+# echo "Wind Speed: ${WIND_SPEED} m/s"
+
+# Save the response to a file (for better processing)
+echo $RESPONSE > response.json
+
+# shows the data in a better format
+python3 weatherProcess.py
+
+# Remove the response file (optional)
+# rm response.json
+
