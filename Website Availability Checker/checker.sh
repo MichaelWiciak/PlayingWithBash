@@ -3,6 +3,11 @@
 # Define log file and log rotation script
 LOGFILE="website_availability.log"
 ROTATE_SCRIPT="./rotate_logs.sh"
+EMAIL_SUBJECT="Website Down Alert"
+EMAIL_TO="michaelwiciakwebsite@gmail.com"
+EMAIL_FROM="michaelwiciakwebsite@gmail.com"
+SMTP_SERVER="smtp.gmail.com"  
+
 
 # Call log rotation script
 "$ROTATE_SCRIPT"
@@ -27,6 +32,8 @@ check_website() {
     echo "Website $url is available (Status Code: $status_code)"
   else
     echo "Website $url is not available (Status Code: $status_code)"
+    # Send email notification
+    echo -e "Subject:$EMAIL_SUBJECT\n\nWebsite $url is down. Status Code: $status_code\nTimestamp: $timestamp" | sendmail -f "$EMAIL_FROM" "$EMAIL_TO"
   fi
 }
 
