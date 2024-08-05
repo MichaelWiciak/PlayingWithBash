@@ -1,32 +1,32 @@
 {
-  "coord": { "lon": 21.0118, "lat": 52.2298 },
+  "coord": { "lon": 4.8897, "lat": 52.374 },
   "weather": [
-    { "id": 800, "main": "Clear", "description": "clear sky", "icon": "01n" }
+    { "id": 801, "main": "Clouds", "description": "few clouds", "icon": "02d" }
   ],
   "base": "stations",
   "main": {
-    "temp": 20.23,
-    "feels_like": 20.11,
-    "temp_min": 18.69,
-    "temp_max": 21.05,
-    "pressure": 1010,
+    "temp": 19.74,
+    "feels_like": 19.57,
+    "temp_min": 18.37,
+    "temp_max": 20.5,
+    "pressure": 1014,
     "humidity": 69,
-    "sea_level": 1010,
-    "grnd_level": 999
+    "sea_level": 1014,
+    "grnd_level": 1014
   },
   "visibility": 10000,
-  "wind": { "speed": 5.81, "deg": 250, "gust": 0 },
-  "clouds": { "all": 0 },
-  "dt": 1722807233,
+  "wind": { "speed": 3.09, "deg": 170 },
+  "clouds": { "all": 20 },
+  "dt": 1722843723,
   "sys": {
     "type": 2,
-    "id": 2035775,
-    "country": "PL",
-    "sunrise": 1722740518,
-    "sunset": 1722795722
+    "id": 2012552,
+    "country": "NL",
+    "sunrise": 1722830856,
+    "sunset": 1722885912
   },
   "timezone": 7200,
-  "id": 756135,
-  "name": "Warsaw",
+  "id": 2759794,
+  "name": "Amsterdam",
   "cod": 200
 }

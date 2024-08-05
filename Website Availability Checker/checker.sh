@@ -36,7 +36,7 @@ check_website() {
     echo -e "Subject:$EMAIL_SUBJECT\n\nWebsite $url is down. Status Code: $status_code\nTimestamp: $timestamp" | sendmail -f "$EMAIL_FROM" "$EMAIL_TO"
   fi
 }
-
+   
 # Check if a URL was provided
 if [[ -z $1 ]]; then
   echo "Usage: $0 <url>"
