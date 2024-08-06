@@ -127,7 +127,7 @@ def sky_art(description):
         return broken_clouds_art, WHITE
     elif description == 'shower rain':
         return shower_rain_art, BLUE
-    elif description == 'rain':
+    elif description == 'rain' or description == 'light rain' or description == 'moderate rain' or description == 'heavy intensity rain':
         return rain_art, BLUE
     elif description == 'thunderstorm':
         return thunderstorm_art, BLACK
@@ -136,7 +136,7 @@ def sky_art(description):
     elif description == 'mist':
         return mist_art, WHITE
     else:
-        return clear_sky_art
+        return clear_sky_art, YELLOW
     
     
 def convert_timestamp(timestamp):
