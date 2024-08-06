@@ -5,7 +5,6 @@ LOGFILE="website_availability.log"
 ROTATE_SCRIPT="./rotate_logs.sh"
 EMAIL_SUBJECT="Website Down Alert"
 EMAIL_TO="michaelwiciakwebsite@gmail.com"
-EMAIL_FROM="michaelwiciakwebsite@gmail.com"
 SMTP_SERVER="smtp.gmail.com"  
 
 
@@ -21,8 +20,8 @@ check_website() {
   # Get current timestamp
   timestamp=$(date +"%Y-%m-%d %H:%M:%S")
 
-  # Fetch the HTTP status code using curl
-  status_code=$(curl -o /dev/null -s -w "%{http_code}\n" "$url")
+  # Fetch the HTTP status code using curl with -L option to follow redirects
+  status_code=$(curl -o /dev/null -s -w "%{http_code}\n" -L "$url")
 
   # Log the result
   echo "$timestamp - URL: $url - Status Code: $status_code" >> "$LOGFILE"
@@ -33,7 +32,13 @@ check_website() {
   else
     echo "Website $url is not available (Status Code: $status_code)"
     # Send email notification
-    echo -e "Subject:$EMAIL_SUBJECT\n\nWebsite $url is down. Status Code: $status_code\nTimestamp: $timestamp" | sendmail -f "$EMAIL_FROM" "$EMAIL_TO"
+    echo -e "Subject:$EMAIL_SUBJECT\n\nWebsite $url is down. Status Code: $status_code\nTimestamp: $timestamp" | msmtp -a default "$EMAIL_TO"
+    # if it worked you will see the following message
+    if [ $? -eq 0 ]; then
+      echo "Email notification sent successfully"
+    else
+      echo "Failed to send email notification"
+    fi
   fi
 }
    
