@@ -44,3 +44,5 @@ Replace the host, from, user, and password fields with your SMTP server details 
 
 Make sure you have a :
 ❯ ~/.msmtprc # msmtp configuration file
+
+For gmail, set up an app password and 2FA. Use that instead of the password of the email account.
