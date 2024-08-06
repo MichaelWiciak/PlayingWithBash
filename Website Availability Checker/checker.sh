@@ -32,7 +32,7 @@ check_website() {
   else
     echo "Website $url is not available (Status Code: $status_code)"
     # Send email notification
-    echo -e "Subject:$EMAIL_SUBJECT\n\nWebsite $url is down. Status Code: $status_code\nTimestamp: $timestamp" | msmtp -a default "$EMAIL_TO"
+    echo -e "Subject:$EMAIL_SUBJECT\n\nWebsite $url is down. Status Code: $status_code\nTimestamp: $timestamp" | msmtp --debug "$EMAIL_TO"
     # if it worked you will see the following message
     if [ $? -eq 0 ]; then
       echo "Email notification sent successfully"
