@@ -9,3 +9,7 @@ Random Bash interactions
 # Website Availability Checker
 
 ![alt text](image.png)
+
+# Random Password Generator
+
+![alt text](image-2.png)

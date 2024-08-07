@@ -64,8 +64,9 @@ fi
 # Generate password
 PASSWORD=$(LC_ALL=C tr -dc "$CHAR_POOL" < /dev/urandom | head -c $LENGTH)
 
-echo "Generated password pre anything: $PASSWORD"
-echo "CHAR_POOL: $CHAR_POOL"
+# If you wanted to check
+# echo "Generated password pre anything: $PASSWORD"
+# echo "CHAR_POOL: $CHAR_POOL"
 
 # Ensure the password meets the inclusion criteria
 if [ "$INCLUDE_SPECIAL" = true ] && ! echo "$PASSWORD" | grep -q "[$SPECIAL_CHARS]"; then
