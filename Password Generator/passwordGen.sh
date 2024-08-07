@@ -88,4 +88,20 @@ fi
 # Shuffle the final password to ensure randomness
 PASSWORD=$(echo "$PASSWORD" | fold -w1 | shuf | tr -d '\n' | head -c $LENGTH)
 
-echo "Generated password: $PASSWORD"
+echo "$PASSWORD"
+
+# write to clipboard
+echo "$PASSWORD" | pbcopy
+
+# Get the current timestamp and user
+timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+user=$(whoami)
+
+# Log the details
+log_file="password_log.log"
+echo "$timestamp | $user | $PASSWORD" >> "$log_file"
+
+# Confirm logging
+echo "Password has been logged with timestamp, user, and password to $log_file"
+
+
