@@ -6,7 +6,7 @@ CACHE_DIR="~/cache"
 mkdir -p "$CACHE_DIR"
 
 # Cache expiry time in seconds
-CACHE_EXPIRY=1
+CACHE_EXPIRY=60
 
 # Function to get the current date and time
 current_date_time() {
@@ -85,19 +85,9 @@ open_files_count() {
         print_color "34" "Number of Open Files:"
         lsof | wc -l > "$cache_file"
     fi
-    echo "Open Files: $(cat $cache_file)"
+    echo "Open Files: $(cat $cache_file) (expires in $((CACHE_EXPIRY - ($(date +%s) - $(stat -f %m $cache_file)))) seconds)"
+
     
-}
-
-top_processes_disk_io() {
-    local cache_file="$CACHE_DIR/top_processes_disk_io"
-    if [[ ! -f $cache_file || $(($(date +%s) - $(stat -f %m $cache_file))) -ge $CACHE_EXPIRY ]]; then
-        print_color "34" "Top Processes by Disk I/O:"
-        iostat -d -k 1 2 | awk 'NR>7 {print $0}' > "$cache_file"
-    fi
-    echo "Top Processes by Disk I/O:"
-    echo "$(cat $cache_file)"
-
 }
 
 # Function to get terminal width
@@ -160,7 +150,6 @@ display() {
     print_color "33" "System Information:"
     print_color "1;30" "$(current_logged_in_users)"
     print_color "1;31" "$(open_files_count)"
-    print_color "1;32" "$(top_processes_disk_io)"
     print_color "32" "$(print_line)"
 }
 
