@@ -25,7 +25,16 @@ load_averages() {
 
 # Function to get the CPU usage
 cpu_usage() {
-    echo "$(top -l 1 | grep "CPU usage" | awk '{print $3 " " $4 " " $5 " " $6 " " $7 " " $8}')"
+    # cache this too
+    local cache_file="$CACHE_DIR/cpu_usage"
+    if [[ ! -f $cache_file || $(($(date +%s) - $(stat -f %m $cache_file))) -ge $CACHE_EXPIRY ]]; then
+        top -l 1 | grep "CPU usage" | awk '{print $3 " " $4 " " $5 " " $6 " " $7 " " $8}' > "$cache_file"
+    fi
+    echo "User: $(awk '{print $1}' $cache_file) (expires in $((CACHE_EXPIRY - ($(date +%s) - $(stat -f %m $cache_file)))) seconds)"
+    echo "System: $(awk '{print $3}' $cache_file)"
+    echo "Idle: $(awk '{print $5}' $cache_file)"
+    # twll qhwne the cache will expire
+    # echo "Expires in $((CACHE_EXPIRY - ($(date +%s) - $(stat -f %m $cache_file))) seconds)"
 }
 
 # Function to get the memory usage
@@ -153,10 +162,12 @@ display() {
     print_color "32" "$(print_line)"
 }
 
-display 
 # Run the display function every 5 seconds
 while true; do
-    sleep 5
-    clear
+    tput clear
+    tput sc
     display
+    tput rc
+    sleep 1
+    clear
 done
