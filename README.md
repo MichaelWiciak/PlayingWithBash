@@ -13,3 +13,5 @@ Random Bash interactions
 # Random Password Generator
 
 ![alt text](image-2.png)
+
+# System Monitor Script
