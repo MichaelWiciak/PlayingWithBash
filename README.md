@@ -15,3 +15,5 @@ Random Bash interactions
 ![alt text](image-2.png)
 
 # System Monitor Script
+
+![alt text](image-1.png)
