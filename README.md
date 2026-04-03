@@ -4,7 +4,7 @@ This repository contains a collection of Bash scripts designed to perform variou
 
 ## Weather Fetcher
 
-<img width="250" alt="image" src="https://github.com/user-attachments/assets/a9bd9c70-1cf0-4dfb-891b-9a2ad7214386">
+<img width="250" alt="image" src="image-0.png">
 
 ### Overview
 
@@ -16,7 +16,7 @@ The Weather Fetcher script retrieves current weather data for a specified city u
    The script loads API credentials from a `.env` file. If the file or API key is missing, it prompts the user with an error message.
 
 2. **Fetching Weather Data:**  
-   The script accepts a city name as an argument and uses `curl` to fetch weather data in JSON format from the OpenWeatherMap API. 
+   The script accepts a city name as an argument and uses `curl` to fetch weather data in JSON format from the OpenWeatherMap API.
 
 3. **Data Processing:**  
    The JSON response is saved to `response.json`, which is then processed by a Python script (`weatherProcess.py`). The Python script:
@@ -122,4 +122,3 @@ This script monitors and displays various system metrics in real-time, including
 ```bash
 ./system_monitor.sh
 ```
-
